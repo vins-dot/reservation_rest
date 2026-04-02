@@ -3,93 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prenotazione Ristorante</title>
+  <title>Prenotazione Elité</title>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Prenota il tuo tavolo</h1>
-      <p class="subtitle">Aperto tutti i giorni &mdash; Pranzo 12:00-15:00 | Cena 19:00-24:00</p>
-    </header>
+  <!-- Header Globale -->
+  <header class="main-header">
+    <div class="header-content">
+      <h1>Reserve<span class="highlight">Élite</span></h1>
+      <p class="subtitle">La tua esperienza culinaria inizia qui. Aperto tutti i giorni.</p>
+    </div>
+  </header>
 
-    <form id="reservation-form">
-      <!-- Step 1: Data -->
-      <section class="step" id="step-date">
-        <h2>1. Scegli la data</h2>
-        <input type="date" id="date" required>
-      </section>
-
-      <!-- Step 2: Fascia oraria -->
-      <section class="step hidden" id="step-slot">
-        <h2>2. Fascia oraria</h2>
-        <div class="slot-options">
-          <label class="slot-card">
-            <input type="radio" name="time_slot" value="lunch">
-            <span class="slot-label">Pranzo<br><small>12:00 - 15:00</small></span>
-          </label>
-          <label class="slot-card">
-            <input type="radio" name="time_slot" value="dinner">
-            <span class="slot-label">Cena<br><small>19:00 - 24:00</small></span>
-          </label>
+  <div class="layout-wrapper">
+    <!-- Colonna Sinistra: Form Interattivo -->
+    <main class="form-section">
+      <form id="reservation-form">
+        
+        <!-- Step 1 & 2: Data e Ora -->
+        <div class="glass-panel group-panel">
+          <div class="panel-header">
+            <h2><span class="step-num">1</span> Quando vorresti venire?</h2>
+          </div>
+          <div class="panel-body row-split">
+            <div class="input-w">
+              <label for="date">Data della prenotazione</label>
+              <input type="date" id="date" required>
+            </div>
+            
+            <div class="input-w" id="step-slot">
+              <label>Fascia Oraria</label>
+              <div class="slot-options">
+                <label class="slot-card">
+                  <input type="radio" name="time_slot" value="lunch">
+                  <span class="slot-label">Pranzo<br><small>12:00 - 15:00</small></span>
+                </label>
+                <label class="slot-card">
+                  <input type="radio" name="time_slot" value="dinner">
+                  <span class="slot-label">Cena<br><small>19:00 - 24:00</small></span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <!-- Step 3: Numero ospiti -->
-      <section class="step hidden" id="step-guests">
-        <h2>3. Quanti ospiti?</h2>
-        <select id="guests">
-          <option value="">Seleziona...</option>
-          <option value="1">1 persona</option>
-          <option value="2">2 persone</option>
-          <option value="3">3 persone</option>
-          <option value="4">4 persone</option>
-          <option value="5">5 persone</option>
-          <option value="6">6 persone</option>
-          <option value="7">7 persone</option>
-          <option value="8">8 persone</option>
-        </select>
-      </section>
+        <!-- Step 3 & 4: Ospiti e Tavolo -->
+        <div class="glass-panel group-panel">
+          <div class="panel-header">
+            <h2><span class="step-num">2</span> Per quante persone?</h2>
+          </div>
+          <div class="panel-body">
+            <div class="input-w">
+              <select id="guests" disabled>
+                <option value="">Seleziona il numero di ospiti...</option>
+                <option value="1">1 persona</option>
+                <option value="2">2 persone</option>
+                <option value="3">3 persone</option>
+                <option value="4">4 persone</option>
+                <option value="5">5 persone</option>
+                <option value="6">6 persone</option>
+                <option value="7">7 persone</option>
+                <option value="8">8 persone</option>
+              </select>
+            </div>
 
-      <!-- Step 4: Tavolo -->
-      <section class="step hidden" id="step-table">
-        <h2>4. Scegli il tavolo</h2>
-        <div id="tables-list" class="tables-grid"></div>
-        <p id="no-tables" class="hidden info-msg">Nessun tavolo disponibile per questa selezione.</p>
-      </section>
-
-      <!-- Step 5: Dati cliente -->
-      <section class="step hidden" id="step-info">
-        <h2>5. I tuoi dati</h2>
-        <div class="form-group">
-          <label for="guest_name">Nome</label>
-          <input type="text" id="guest_name" placeholder="Mario Rossi" required>
+            <!-- Selezione tavolo dinamica -->
+            <div id="step-table" class="hidden push-down">
+              <label>Scegli il tuo tavolo</label>
+              <div id="tables-list" class="tables-grid"></div>
+              <p id="no-tables" class="hidden info-msg">Nessun tavolo disponibile per la selezione corrente.</p>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="guest_phone">Telefono</label>
-          <input type="tel" id="guest_phone" placeholder="+39 333 1234567" required>
-        </div>
-        <div class="form-group">
-          <label for="special_requests">Richieste speciali</label>
-          <textarea id="special_requests" rows="3" placeholder="Allergie, seggiolone, occasione speciale..."></textarea>
-        </div>
-      </section>
 
-      <!-- Step 6: Riepilogo e conferma -->
-      <section class="step hidden" id="step-confirm">
-        <h2>6. Riepilogo</h2>
-        <div id="summary" class="summary-box"></div>
-        <button type="submit" class="btn-confirm">Conferma prenotazione</button>
-      </section>
-    </form>
+        <!-- Step 5: Informazioni Personali -->
+        <div class="glass-panel group-panel" id="step-info" style="opacity: 0.5; pointer-events: none;">
+          <div class="panel-header">
+            <h2><span class="step-num">3</span> I tuoi contatti</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row-split">
+              <div class="form-group input-w">
+                <label for="guest_name">Nome e Cognome</label>
+                <input type="text" id="guest_name" placeholder="Es. Mario Rossi" required>
+              </div>
+              <div class="form-group input-w">
+                <label for="guest_phone">Telefono</label>
+                <input type="tel" id="guest_phone" placeholder="+39 333 1234567" required>
+              </div>
+            </div>
+            <div class="form-group input-w push-down">
+              <label for="special_requests">Note o Richieste Speciali (Opzionale)</label>
+              <textarea id="special_requests" rows="2" placeholder="Es. seggiolone, intolleranze, ecc."></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
 
-    <!-- Conferma finale -->
-    <div id="success" class="hidden">
-      <div class="success-box">
-        <h2>Prenotazione confermata!</h2>
-        <div id="success-details"></div>
-        <button id="new-reservation" class="btn-new">Nuova prenotazione</button>
+    <!-- Colonna Destra: Sidebar Riepilogo -->
+    <aside class="summary-section">
+      <div class="glass-panel sticky-sidebar">
+        <h2>Riepilogo</h2>
+        <div class="live-summary" id="live-summary">
+          <div class="summary-row empty-state">Inizia a compilare il modulo a sinistra per visualizzare il tuo riepilogo in tempo reale.</div>
+        </div>
+        
+        <div class="summary-footer">
+          <button type="submit" form="reservation-form" class="btn-confirm" id="btn-confirm" disabled>
+            Conferma <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+          </button>
+        </div>
       </div>
+    </aside>
+  </div>
+
+  <!-- Modale di Successo -->
+  <div id="success" class="modal hidden">
+    <div class="modal-content glass-panel">
+      <div class="success-icon">✨</div>
+      <h2>Prenotazione Confermata!</h2>
+      <p class="success-subtitle">Non vediamo l'ora di averti con noi.</p>
+      <div id="success-details" class="success-box"></div>
+      <button id="new-reservation" class="btn-new">Nuova Prenotazione</button>
     </div>
   </div>
 
