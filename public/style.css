@@ -1,0 +1,278 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #faf7f2;
+  --card: #ffffff;
+  --primary: #8b4513;
+  --primary-light: #a0522d;
+  --accent: #d4a76a;
+  --text: #333333;
+  --text-light: #777777;
+  --border: #e0d5c7;
+  --success: #2e7d32;
+  --radius: 10px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 30px 0 20px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.step {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.step h2 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Date input */
+input[type="date"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+/* Time slot cards */
+.slot-options {
+  display: flex;
+  gap: 12px;
+}
+
+.slot-card {
+  flex: 1;
+  cursor: pointer;
+}
+
+.slot-card input[type="radio"] {
+  display: none;
+}
+
+.slot-label {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.slot-label small {
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.slot-card input:checked + .slot-label {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.slot-card input:checked + .slot-label small {
+  color: #e8d5c0;
+}
+
+/* Guests select */
+select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+/* Tables grid */
+.tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.table-card {
+  padding: 14px;
+  text-align: center;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.table-card:hover {
+  border-color: var(--accent);
+}
+
+.table-card.selected {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.table-card .table-num {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.table-card .table-cap {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.table-card.selected .table-cap {
+  color: #e8d5c0;
+}
+
+.info-msg {
+  color: var(--text-light);
+  font-style: italic;
+  padding: 10px 0;
+}
+
+/* Form inputs */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* Summary */
+.summary-box {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.summary-box strong {
+  color: var(--primary);
+}
+
+/* Buttons */
+.btn-confirm {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-confirm:hover {
+  background: var(--primary-light);
+}
+
+/* Success */
+.success-box {
+  background: var(--card);
+  border: 2px solid var(--success);
+  border-radius: var(--radius);
+  padding: 30px 24px;
+  text-align: center;
+}
+
+.success-box h2 {
+  color: var(--success);
+  margin-bottom: 16px;
+}
+
+#success-details {
+  text-align: left;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.btn-new {
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-new:hover {
+  background: var(--primary-light);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  .slot-options {
+    flex-direction: column;
+  }
+}
